@@ -10,11 +10,11 @@ end
 
 def decode_word(word)
   word_split = word.split
-  array = word_split.map do |word|
-    if word == '/'
+  array = word_split.map do |i|
+    if i == '/'
       ' '
     else
-      decode_char(word)
+      decode_char(i)
     end
   end
   array.join
@@ -26,4 +26,3 @@ def decode(phr)
   array.join(' ')
 end
 
-puts decode('.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-. / .-. ..- -... .. . ...')
