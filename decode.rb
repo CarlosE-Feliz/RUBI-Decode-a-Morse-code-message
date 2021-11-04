@@ -1,31 +1,29 @@
-@morse = '.-', '-...',	'-.-.',	'-..',	'.',	'..-.',	'--.',	'....',	'..',	'.---',	'-.-',
-         '.-..', '--',	'-.', '---',	'--.-',	'.--.',	'.-.',	'...',	'-', '..-',	'...-',
-         '.--',	'-..-',	'-.--',	'--..'
-
-@alphabet = 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
-            'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-
 def decode_char(char)
-  @morse.each_with_index do |m, idx|
-    next unless char == m
-
-    @alphabet.each_with_index do |letter, i|
-      puts(letter) if i == idx
-    end
-  end
+  @morse = '.-', '-...',	'-.-.',	'-..',	'.',	'..-.',	'--.',	'....',	'..',	'.---',	'-.-',
+    '.-..', '--',	'-.', '---',	'--.-',	'.--.',	'.-.',	'...',	'-', '..-',	'...-',
+    '.--',	'-..-',	'-.--',	'--..'
+  @alphabet = 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+  index = @morse.find_index(char)
+  @alphabet[index]
 end
 
 def decode_word(word)
-  full_word = ''
-  split_word = word.split
-  split_word.each_with_index do |t, _i|
-    @morse.each_with_index do |m, idx|
-      next unless t == m
-
-      @alphabet.each_with_index do |letter, i|
-        full_word += letter if i == idx
-      end
+  word_split = word.split
+  array = word_split.map do |word|
+    if word == '/'
+      ' '
+    else
+      decode_char(word)
     end
   end
-  puts(full_word.chars.join(' '))
+  array.join
 end
+
+def decode(phr)
+  sentence = phr.split('   ')
+  array = sentence.map { |word| decode_word(word) }
+  array.join(' ')
+end
+
+puts decode('.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-. / .-. ..- -... .. . ...')
