@@ -16,16 +16,16 @@ def decode_char(char)
 end
 
 def decode_word(word)
-  fullWord = ''
-  split_word = word.split(' ')
+  full_word = ''
+  split_word = word.split
   split_word.each_with_index do |t, _i|
     @morse.each_with_index do |m, idx|
       next unless t == m
 
       @alphabet.each_with_index do |letter, i|
-        fullWord += letter if i == idx
+        full_word += letter if i == idx
       end
     end
   end
-  puts(fullWord.split('').join(' '))
+  puts(full_word.chars.join(' '))
 end
