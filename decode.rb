@@ -18,18 +18,18 @@
 
 
  def decode_word(word)
-   fullWord = ' '
-   word.split.each_with_index do |t, _i|
+   fullWord = ''
+   split_word = word.split(' ')
+   split_word.each_with_index do |t, _i|
      @morse.each_with_index do |m, idx|
        next unless t == m
 
        @alphabet.each_with_index do |letter, i|
-
          fullWord += letter if i == idx
        end
      end
    end
-   puts(fullWord)
+   puts(fullWord.split('').join(' '))
  end
 
- decode_word('-- -.--')
+
