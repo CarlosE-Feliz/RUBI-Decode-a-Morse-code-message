@@ -25,4 +25,3 @@ def decode(phr)
   array = sentence.map { |word| decode_word(word) }
   array.join(' ')
 end
-
